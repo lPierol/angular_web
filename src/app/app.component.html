@@ -1,5 +1,8 @@
-<button mat-raised-button (click)="agregarCurso()">Agregar curso</button>
-<hr>
-<app-lista-cursos></app-lista-cursos>
-<hr>
-<app-tabla-cursos></app-tabla-cursos>
+<mat-toolbar color="primary">
+    <span>Habbo Hotel</span>
+    <span class="example-spacer"></span>
+    <button mat-button (click)="redigirInicio()">Inicio</button>
+    <a mat-button routerLink="cursos/listar">Listar Cursos</a>
+    <a mat-button routerLink="cursos/agregar">Agregar Curso</a>
+</mat-toolbar>
+<router-outlet></router-outlet>

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { CursosService } from 'src/app/cursos/services/cursos.service';
 import { Curso } from 'src/app/models/curso';
-import { CursoService } from 'src/app/services/curso.service';
 
 @Component({
   selector: 'app-tabla-cursos',
@@ -15,7 +15,7 @@ export class TablaCursosComponent implements OnInit, OnDestroy {
   suscripcion!: Subscription;
 
   constructor(
-    private cursoService: CursoService
+    private cursoService: CursosService
   ){
     
   }
@@ -23,7 +23,7 @@ export class TablaCursosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log("Instanciando MatTAbleDataSource");
     this.dataSource = new MatTableDataSource<Curso>();
-    this.suscripcion = this.cursoService.obtenerCursosObservable().subscribe((cursos: Curso[]) => {
+    this.suscripcion = this.cursoService.obtenerCursos().subscribe((cursos: Curso[]) => {
       console.log("Agregando datos al MatTAbleDataSource");
       this.dataSource.data = cursos;
     });
