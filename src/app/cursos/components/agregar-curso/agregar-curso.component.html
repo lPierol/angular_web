@@ -2,12 +2,12 @@
     <form [formGroup]="formulario" (ngSubmit)="agregarCurso()">
         <div class="row">
             <mat-form-field class="col-md-6">
-                <mat-label>Titulo</mat-label>
+                <mat-label>Nombre</mat-label>
                 <input matInput formControlName="nombre">
             </mat-form-field>
 
             <mat-form-field class="col-md-6">
-                <mat-label>Descripción</mat-label>
+                <mat-label>Comision</mat-label>
                 <input matInput formControlName="comision">
             </mat-form-field>
 
@@ -25,8 +25,15 @@
                 <mat-datepicker #fechaFin></mat-datepicker>
             </mat-form-field>
 
+            <mat-form-field class="col-md-6">
+                <mat-label>Profesor</mat-label>
+                <mat-select formControlName="profesor">
+                    <mat-option *ngFor="let profesor of profesores$ | async" [value]="profesor">{{ profesor.nombre }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
             <div class="col-md-6">
-                <mat-slide-toggle formControlName="inscripcionAbierta">Noticia abierta</mat-slide-toggle>
+                <mat-slide-toggle formControlName="inscripcionAbierta">Inscripcion abierta</mat-slide-toggle>
             </div>
 
             <div class="col-md-6">

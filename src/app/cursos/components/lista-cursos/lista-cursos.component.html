@@ -6,18 +6,20 @@
                     <mat-card-title>{{ curso.nombre | uppercase }}</mat-card-title>
                     <mat-card-subtitle>{{ curso.comision }}</mat-card-subtitle>
                 </mat-card-header>
-                <img class="card-imagen" mat-card-image src="https://i.ytimg.com/vi/Abb08en2yZU/maxresdefault.jpg" alt="">
+                <img class="card-imagen" mat-card-image src="https://parentesis.com/imagesPosts/coder00.jpg" alt="">
                 <mat-card-content>
-                    <p>Creado por {{ curso.profesor.nombre }}</p>
+                    <p>Impartido por {{ curso.profesor.nombre }}</p>
                     <p>{{ curso.inscripcionAbierta }}</p>
                 </mat-card-content>
                 <mat-card-actions align="end">
-                    <button mat-raised-button color="primary" (click)="redirigirEditarCurso(curso)">
-                        Editar
-                    </button>
-                    <button mat-button color="warn" (click)="eliminarCurso(curso)">
-                        Eliminar
-                    </button>
+                    <ng-container *ngIf="sesion$ | async as sesion">
+                        <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-raised-button color="primary" (click)="abrirDialog(curso)">
+                            Editar
+                        </button>
+                        <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-button color="warn" (click)="eliminarCurso(curso)">
+                            Eliminar
+                        </button>
+                    </ng-container>
                 </mat-card-actions>
             </mat-card>
         </div>
